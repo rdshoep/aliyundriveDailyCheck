@@ -8,8 +8,8 @@
  */
 const axios = require('axios')
 const QL_URL = 'http://127.0.0.1:5700'
-const CLIENT_ID = process.env.CLIENT_ID
-const CLIENT_SECRET = process.env.CLIENT_SECRET
+const CLIENT_ID = process.env.QL_CLIENT_ID
+const CLIENT_SECRET = process.env.QL_CLIENT_SECRET
 
 /**
  *获取青龙token

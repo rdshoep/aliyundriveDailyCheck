@@ -5,6 +5,7 @@ cron "0 9 * * *" autoSignin.js, tag=阿里云盘签到
 const axios = require('axios')
 const { initInstance, getEnv, updateCkEnv } = require('./qlApi.js')
 const notify = require('./sendNotify')
+const REFRESH_TOKEN_NAME = process.env.refresh_token ? 'refresh_token' : 'ALIYUN_DRIVE_REFRESH_TOKEN'
 
 const updateAccesssTokenURL = 'https://auth.aliyundrive.com/v2/account/token'
 const signinURL = 'https://member.aliyundrive.com/v1/activity/sign_in_list'
@@ -91,9 +92,9 @@ async function getRefreshToken() {
     console.log(e)
   }
 
-  let refreshToken = process.env.refreshToken || []
+  let refreshToken = process.env[REFRESH_TOKEN_NAME] || []
   try {
-    if (instance) refreshToken = await getEnv(instance, 'refreshToken')
+    if (instance) refreshToken = await getEnv(instance, REFRESH_TOKEN_NAME)
   } catch (e) {}
 
   let refreshTokenArray = []
